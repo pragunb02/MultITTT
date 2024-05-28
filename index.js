@@ -31,6 +31,21 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("A user is Connected");
+
+  socket.on("disconnect", () => {
+    console.log("user Disconnected");
+  });
+  socket.on("createGame", () => {
+    const roomUniqueId = makeid(5);
+    room[roomUniqueId] = {};
+    socket.join(roomUniqueId);
+    socket.emit("newGame", { roomUniqueId: roomUniqueId });
+  });
+  socket.on("JoinGame", (data) => {
+    socket, join(data.roomUniqueId);
+    socket.to(data.roomUniqueId).emit("playersConnected", {});
+    socket.emit("playersConnected");
+  });
 });
 
 server.listen(PORT, () => {
@@ -42,3 +57,16 @@ server.listen(PORT, () => {
 //   console.log("Hello");
 // }
 // server.listen(PORT, startServer);
+
+function makeid(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
