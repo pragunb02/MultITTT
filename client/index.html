@@ -16,6 +16,24 @@
       <input type="text" name="" id="roomUniqueId" />
       <button onclick="joinGame()">Join Game</button>
     </div>
+
+    <div id="gamePlay">
+      <div id="waitingArea"></div>
+
+      <div id="gameArea" style="display: none">
+        You:
+        <div id="player1Choice">
+          <button onclick="sendChoice('Rock')">Rock</button>
+          <button onclick="sendChoice('Paper')">Paper</button>
+          <button onclick="sendChoice('Scissor')">Scissor</button>
+        </div>
+        Oppenent:
+        <div id="player2Choice"></div>
+      </div>
+
+      <div id="winnerArea"></div>
+    </div>
+
     <script src="client.js"></script>
   </body>
 </html>
