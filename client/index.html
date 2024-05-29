@@ -7,19 +7,28 @@
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
     <h1>Rock Paper Scissors</h1>
     <div id="initial">
+      <input
+        type="text"
+        id="playerName"
+        placeholder="Enter your name"
+        required
+      />
       <button onclick="createGame()">Create Game</button>
       <div>or</div>
-      <input type="text" name="" id="roomUniqueId" />
+      <input
+        type="text"
+        id="roomUniqueId"
+        placeholder="Enter room code"
+        required
+      />
       <button onclick="joinGame()">Join Game</button>
     </div>
 
     <div id="gamePlay">
       <div id="waitingArea"></div>
-
       <div id="gameArea" style="display: none">
         You:
         <div id="player1Choice">
@@ -32,11 +41,9 @@
           <p id="opponentState">Waiting For Opponent....</p>
         </div>
       </div>
-
       <hr />
       <div id="winnerArea"></div>
     </div>
-
     <script src="client.js"></script>
   </body>
 </html>
